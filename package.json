@@ -1,0 +1,20 @@
+{
+    "name": "checkpoint-backend",
+    "version": "1.0.0",
+    "description": "Register user checkpoint",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "tsx watch src/index.ts",
+        "build": "tsup src",
+        "start": "node dist",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Mateus Kuritza",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^18.16.3",
+        "tsup": "^6.7.0",
+        "tsx": "^3.12.7",
+        "typescript": "^5.0.4"
+    }
+}
