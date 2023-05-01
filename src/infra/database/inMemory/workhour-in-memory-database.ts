@@ -4,14 +4,8 @@ import { type WorkhourRepository } from '../../../app/repositories/workhour-repo
 export class WorkhourInMemoryDatabase implements WorkhourRepository {
     private readonly workhours: Workhour[] = [];
 
-    async existsByEmployeeIdAndEndDateIsNull(employeeId: string): Promise<boolean> {
-        const workhour = this.workhours.find(
-            (workhour) => workhour.employeeId === employeeId && workhour.endDate === null,
-        );
-
-        if (workhour !== undefined) return true;
-
-        return false;
+    async getByEmployeeIdAndEndDateNull(employeeId: string): Promise<Workhour | undefined> {
+        return this.workhours.find((workhour) => workhour.employeeId === employeeId && workhour.endDate === null);
     }
 
     async create(workhour: Workhour): Promise<void> {
@@ -20,5 +14,10 @@ export class WorkhourInMemoryDatabase implements WorkhourRepository {
 
     async findById(id: string): Promise<Workhour | undefined> {
         return this.workhours.find((workhour) => workhour.id === id);
+    }
+
+    async update(workhour: Workhour): Promise<void> {
+        const index = this.workhours.findIndex((dbWorkhour) => dbWorkhour.id === workhour.id);
+        this.workhours[index] = workhour;
     }
 }

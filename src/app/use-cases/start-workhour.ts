@@ -1,5 +1,5 @@
 import { Workhour } from '../entities/workhour';
-import { WorkhourAlreadyStarted } from '../errors/workhour-already-started';
+import { WorkhourAlreadyStartedError } from '../errors/workhour-already-started-error';
 import { type WorkhourRepository } from '../repositories/workhour-repository';
 
 interface StartWorkhourRequest {
@@ -16,8 +16,8 @@ export class StartWorkhour {
     async execute(request: StartWorkhourRequest): Promise<StartWorkhourResponse> {
         const { employeeId } = request;
 
-        const cantStartWorkhour = await this.workhourRepository.existsByEmployeeIdAndEndDateIsNull(employeeId);
-        if (cantStartWorkhour) throw new WorkhourAlreadyStarted();
+        const canEndWorkhour = await this.workhourRepository.getByEmployeeIdAndEndDateNull(employeeId);
+        if (canEndWorkhour != null) throw new WorkhourAlreadyStartedError();
 
         const workhour = new Workhour({
             employeeId,

@@ -30,6 +30,11 @@ export class Workhour {
         return this.props.endDate;
     }
 
+    endWorkhour(): Workhour {
+        this.props.endDate = new Date();
+        return this;
+    }
+
     private isStartDateBeforeEndData({ startDate, endDate }: IWorkhour): boolean {
         if (endDate === null) return true;
         return startDate.getTime() < endDate.getTime();

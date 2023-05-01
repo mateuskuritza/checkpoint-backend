@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { WorkhourInMemoryDatabase } from '../../infra/database/inMemory/workhour-in-memory-database';
 import { makeEmployee } from '../../tests/factories/employee-factory';
 import { makeWorkhour } from '../../tests/factories/workhour-factory';
-import { WorkhourAlreadyStarted } from '../errors/workhour-already-started';
+import { WorkhourAlreadyStartedError } from '../errors/workhour-already-started-error';
 import { StartWorkhour } from './start-workhour';
 
 describe('Start workhour', () => {
@@ -25,7 +25,7 @@ describe('Start workhour', () => {
         await workhourInMemoryDatabase.create(workhour);
 
         await expect(startWorkhourUseCase.execute({ employeeId: workhour.employeeId })).rejects.toThrowError(
-            WorkhourAlreadyStarted,
+            WorkhourAlreadyStartedError,
         );
     });
 });
