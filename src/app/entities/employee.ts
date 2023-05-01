@@ -17,6 +17,10 @@ export class Employee {
         this.props = { ...data };
     }
 
+    get id(): string {
+        return this.props.id;
+    }
+
     get token(): string {
         return this.props.token;
     }

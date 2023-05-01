@@ -1,5 +1,7 @@
-import { type IWorkhour } from '../entities/schemas/workhour.schema';
+import { type Workhour } from '../entities/workhour';
 
-export abstract class WorkhouRepository {
-    abstract create(notification: IWorkhour): Promise<void>;
+export abstract class WorkhourRepository {
+    abstract create(workhour: Workhour): Promise<void>;
+    abstract findById(id: string): Promise<Workhour | undefined>;
+    abstract existsByEmployeeIdAndEndDateIsNull(employeeId: string): Promise<boolean>;
 }

@@ -18,7 +18,20 @@ export class Workhour {
         this.props = { ...data };
     }
 
+    get id(): string {
+        return this.props.id;
+    }
+
+    get employeeId(): string {
+        return this.props.employeeId;
+    }
+
+    get endDate(): Date | null {
+        return this.props.endDate;
+    }
+
     private isStartDateBeforeEndData({ startDate, endDate }: IWorkhour): boolean {
+        if (endDate === null) return true;
         return startDate.getTime() < endDate.getTime();
     }
 

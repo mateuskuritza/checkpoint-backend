@@ -12,4 +12,8 @@ export class EmployeeInMemoryDatabase implements EmployeeRepository {
     async create(employee: Employee): Promise<void> {
         this.employees.push(employee);
     }
+
+    async findById(id: string): Promise<Employee | undefined> {
+        return this.employees.find((employee) => employee.id === id);
+    }
 }
