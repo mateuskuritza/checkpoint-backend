@@ -20,4 +20,8 @@ export class WorkhourInMemoryDatabase implements WorkhourRepository {
         const index = this.workhours.findIndex((dbWorkhour) => dbWorkhour.id === workhour.id);
         this.workhours[index] = workhour;
     }
+
+    async getAllByEmployeeId(employeeId: string): Promise<Workhour[]> {
+        return this.workhours.filter((workhour) => workhour.employeeId === employeeId);
+    }
 }

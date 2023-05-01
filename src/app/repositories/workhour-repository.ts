@@ -5,4 +5,5 @@ export abstract class WorkhourRepository {
     abstract findById(id: string): Promise<Workhour | undefined>;
     abstract update(workhour: Workhour): Promise<void>;
     abstract getByEmployeeIdAndEndDateNull(employeeId: string): Promise<Workhour | undefined>;
+    abstract getAllByEmployeeId(employeeId: string): Promise<Workhour[]>;
 }
