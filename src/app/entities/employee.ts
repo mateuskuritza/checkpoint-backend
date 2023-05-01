@@ -17,6 +17,10 @@ export class Employee {
         this.props = { ...data };
     }
 
+    get token(): string {
+        return this.props.token;
+    }
+
     private isValid(props: IEmployee): {
         valid: boolean;
         error?: string;
