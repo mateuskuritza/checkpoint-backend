@@ -1,7 +1,7 @@
 import { StartWorkhour } from '../../app/use-cases/start-workhour';
-import { WorkhourInMemoryDatabase } from '../database/inMemory/workhour-in-memory-database';
+import { WorkhourPrismaDatabase } from '../database/prisma/workhour-prisma-database';
 
 export function startWorkHourUseCase(): StartWorkhour {
-    const database = new WorkhourInMemoryDatabase();
+    const database = new WorkhourPrismaDatabase();
     return new StartWorkhour(database);
 }

@@ -6,7 +6,7 @@ interface GetWorkhoursRequest {
 }
 
 interface GetWorkhoursResponse {
-    today: IWorkhour;
+    today?: IWorkhour;
     history: IWorkhour[];
 }
 
@@ -21,12 +21,28 @@ export class GetEmployeeWorkhours {
         const today = workhours.filter((workhour) => {
             const today = new Date();
             const workhourDate = new Date(workhour.startDate);
-            return today.getDate() === workhourDate.getDate();
-        })[0];
+            return today.getDate() === workhourDate.getDate() && workhour.endDate === null;
+        });
 
+        // TODO: create presentation layer to return the response
         return {
-            today,
-            history: workhours,
+            today:
+                today.length > 0
+                    ? {
+                          id: today[0].id,
+                          startDate: today[0].startDate,
+                          endDate: today[0].endDate,
+                          employeeId,
+                      }
+                    : undefined,
+            history: workhours
+                .filter((workhour) => workhour.endDate)
+                .map((workhour) => ({
+                    id: workhour.id,
+                    startDate: workhour.startDate,
+                    endDate: workhour.endDate,
+                    employeeId,
+                })),
         };
     }
 }

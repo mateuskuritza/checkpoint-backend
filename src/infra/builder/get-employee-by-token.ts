@@ -1,7 +1,7 @@
 import { GetEmployeeByToken } from '../../app/use-cases/get-employee-by-token';
-import { EmployeeInMemoryDatabase } from '../database/inMemory/employee-in-memory-database';
+import { EmployeePrismaDatabase } from '../database/prisma/employee-prisma-database';
 
 export function getEmployeeByTokenUseCase(): GetEmployeeByToken {
-    const database = new EmployeeInMemoryDatabase();
+    const database = new EmployeePrismaDatabase();
     return new GetEmployeeByToken(database);
 }
