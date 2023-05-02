@@ -2,7 +2,7 @@ import { type Workhour } from '../../../app/entities/workhour';
 import { type WorkhourRepository } from '../../../app/repositories/workhour-repository';
 
 export class WorkhourInMemoryDatabase implements WorkhourRepository {
-    private readonly workhours: Workhour[] = [];
+    private workhours: Workhour[] = [];
 
     async getByEmployeeIdAndEndDateNull(employeeId: string): Promise<Workhour | undefined> {
         return this.workhours.find((workhour) => workhour.employeeId === employeeId && workhour.endDate === null);
@@ -22,6 +22,8 @@ export class WorkhourInMemoryDatabase implements WorkhourRepository {
     }
 
     async getAllByEmployeeId(employeeId: string): Promise<Workhour[]> {
-        return this.workhours.filter((workhour) => workhour.employeeId === employeeId);
+        return this.workhours
+            .filter((workhour) => workhour.employeeId === employeeId)
+            .sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
     }
 }

@@ -1,3 +1,4 @@
+import { type IWorkhour } from '../entities/schemas/workhour.schema';
 import { Workhour } from '../entities/workhour';
 import { WorkhourAlreadyStartedError } from '../errors/workhour-already-started-error';
 import { type WorkhourRepository } from '../repositories/workhour-repository';
@@ -7,7 +8,7 @@ interface StartWorkhourRequest {
 }
 
 interface StartWorkhourResponse {
-    workhour: Workhour;
+    workhour: IWorkhour;
 }
 
 export class StartWorkhour {

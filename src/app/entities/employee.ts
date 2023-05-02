@@ -21,6 +21,10 @@ export class Employee {
         return this.props.id;
     }
 
+    get name(): string {
+        return this.props.name;
+    }
+
     get token(): string {
         return this.props.token;
     }

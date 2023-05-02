@@ -1,4 +1,4 @@
-import { type Workhour } from '../entities/workhour';
+import { type IWorkhour } from '../entities/schemas/workhour.schema';
 import { WorkHourToEndNotFoundError } from '../errors/workhour-to-end-not-found-error';
 import { type WorkhourRepository } from '../repositories/workhour-repository';
 
@@ -7,7 +7,7 @@ interface EndWorkhourRequest {
 }
 
 interface EndWorkhourResponse {
-    workhour: Workhour;
+    workhour: IWorkhour;
 }
 
 export class EndWorkhour {

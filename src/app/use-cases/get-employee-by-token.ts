@@ -1,4 +1,4 @@
-import { type Employee } from '../entities/employee';
+import { type IEmployee } from '../entities/schemas/employee.schema';
 import { NotFoundError } from '../errors/not-found-error';
 import { type EmployeeRepository } from '../repositories/employee-repository';
 
@@ -7,7 +7,7 @@ interface GetEmployeeByTokenRequest {
 }
 
 interface GetEmployeeByTokenResponse {
-    employee: Employee;
+    employee: IEmployee;
 }
 
 export class GetEmployeeByToken {

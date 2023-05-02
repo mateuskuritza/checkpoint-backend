@@ -30,6 +30,10 @@ export class Workhour {
         return this.props.endDate;
     }
 
+    get startDate(): Date {
+        return this.props.startDate;
+    }
+
     endWorkhour(): Workhour {
         this.props.endDate = new Date();
         return this;
